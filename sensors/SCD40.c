@@ -92,7 +92,7 @@ bool unitemp_SCD40_alloc(Sensor* sensor, char* args) {
 }
 
 bool unitemp_SCD40_free(Sensor* sensor) {
-    //Нечего высвобождать, так как ничего не было выделено
+    //Nothing to release since nothing was allocated
     UNUSED(sensor);
     return true;
 }

@@ -67,9 +67,9 @@ UnitempStatus unitemp_MAX6675_update(Sensor* sensor) {
 
     if(raw == 0xFFFFFFFF || raw == 0) return UT_SENSORSTATUS_TIMEOUT;
 
-    //Определение состояния термопары
+    //Determining the status of the thermocouple
     uint8_t state = raw & 0b100;
-    //Обрыв
+    //Break
     if(state == 0b100) {
         UNITEMP_DEBUG("%s has thermocouple open circuit", sensor->name);
         return UT_SENSORSTATUS_ERROR;

@@ -45,14 +45,14 @@ bool unitemp_SHT30_I2C_alloc(Sensor* sensor, char* args) {
     UNUSED(args);
     I2CSensor* i2c_sensor = (I2CSensor*)sensor->instance;
 
-    //Адреса на шине I2C (7 бит)
+    //Addresses on the I2C bus (7 bits)
     i2c_sensor->minI2CAdr = 0x44 << 1;
     i2c_sensor->maxI2CAdr = 0x45 << 1;
     return true;
 }
 
 bool unitemp_SHT30_I2C_free(Sensor* sensor) {
-    //Нечего высвобождать, так как ничего не было выделено
+    //Nothing to release since nothing was allocated
     UNUSED(sensor);
     return true;
 }
@@ -64,21 +64,21 @@ bool unitemp_SHT30_init(Sensor* sensor) {
 
 bool unitemp_GXHT30_init(Sensor* sensor) {
     I2CSensor* i2c_sensor = (I2CSensor*)sensor->instance;
-    //Включение режима автоматического преобразования 2 раза в сек
+    //Enable automatic conversion mode 2 times per second
     uint8_t data[2] = {0x22, 0x36};
     if(!unitemp_i2c_writeArray(i2c_sensor, 2, data)) return false;
     return true;
 }
 
 bool unitemp_SHT30_I2C_deinit(Sensor* sensor) {
-    //Нечего деинициализировать
+    //Nothing to deinitialize
     UNUSED(sensor);
     return true;
 }
 
 UnitempStatus unitemp_SHT30_I2C_update(Sensor* sensor) {
     I2CSensor* i2c_sensor = (I2CSensor*)sensor->instance;
-    //Получение данных
+    //Receiving data
     uint8_t data[6] = {0xE0, 0x00};
     if(!unitemp_i2c_writeArray(i2c_sensor, 2, data)) return UT_SENSORSTATUS_TIMEOUT;
     if(!unitemp_i2c_readArray(i2c_sensor, 6, data)) return UT_SENSORSTATUS_TIMEOUT;
