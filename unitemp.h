@@ -18,37 +18,37 @@
 #ifndef UNITEMP
 #define UNITEMP
 
-/* Подключение стандартных библиотек */
+/* Connecting standard libraries */
 
-/* Подключение API Flipper Zero */
-//Файловый поток
+/* Flipper Zero API connection */
+//File stream
 #include <toolbox/stream/file_stream.h>
-//Экран
+//Screen
 #include <gui/gui.h>
 #include <gui/view_dispatcher.h>
 #include <gui/modules/widget.h>
 #include <gui/modules/popup.h>
-//Уведомления
+//Notifications
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
 
-/* Внутренние библиотеки */
-//Интерфейсы подключения датчиков
+/* Internal libraries */
+//Sensor connection interfaces
 #include "Sensors.h"
 
-/* Объявление макроподстановок */
-//Имя приложения
+/* Declaring Macro Substitutions */
+//Application name
 #define APP_NAME "Unitemp"
-//Версия приложения
+//Application version
 #define UNITEMP_APP_VER "1.6"
-//Путь хранения файлов плагина
+//Plugin file storage path
 #define APP_PATH_FOLDER "/ext/unitemp"
-//Имя файла с настройками
+//Settings file name
 #define APP_FILENAME_SETTINGS "settings.cfg"
-//Имя файла с датчиками
+//Sensor file name
 #define APP_FILENAME_SENSORS "sensors.cfg"
 
-//Размер буффера текста
+//Text buffer size
 #define BUFF_SIZE 32
 
 #define UNITEMP_D
@@ -59,10 +59,10 @@
 #define UNITEMP_DEBUG(msg, ...)
 #endif
 
-/* Объявление перечислений */
-//Единицы измерения температуры
+/* Declaration of transfers */
+//Temperature units
 typedef enum { UT_TEMP_CELSIUS, UT_TEMP_FAHRENHEIT, UT_TEMP_COUNT } tempMeasureUnit;
-//Единицы измерения давления
+//Pressure units
 typedef enum {
     UT_PRESSURE_MM_HG,
     UT_PRESSURE_IN_HG,
@@ -77,52 +77,52 @@ typedef enum {
     UT_HUMIDITY_DEWPOINT, // Dewpoint
     UT_HUMIDITY_COUNT     // Number of humidity modes
 } humidityUnit;
-/* Объявление структур */
-//Настройки плагина
+/* Declaration of structures */
+//Plugin settings
 typedef struct {
-    //Бесконечная работа подсветки
+    //Endless backlight operation
     bool infinityBacklight;
-    //Единица измерения температуры
+    //Temperature unit
     tempMeasureUnit temp_unit;
     // Humidity units
     humidityUnit humidity_unit;
-    //Единица измерения давления
+    //Pressure unit
     pressureMeasureUnit pressure_unit;
-    //Последнее состояние OTG
+    //Latest OTG status
     bool lastOTGState;
 } UnitempSettings;
 
-//Основная структура плагина
+//Basic plugin structure
 typedef struct {
-    //Система
-    bool sensors_ready; //Флаг готовности датчиков к опросу
-    bool sensors_update; // Флаг допустимости опроса датчиков
-    //Основные настройки
+    //System
+    bool sensors_ready; //Sensor readiness flag for polling
+    bool sensors_update; //Sensor polling permissibility flag
+    //Basic settings
     UnitempSettings settings;
-    //Массив указателей на датчики
+    //Array of pointers to sensors
     Sensor** sensors;
-    //Количество загруженных датчиков
+    //Number of loaded sensors
     uint8_t sensors_count;
-    //SD-карта
-    Storage* storage; //Хранилище
-    Stream* file_stream; //Файловый поток
+    //SD card
+    Storage* storage; //Storage
+    Stream* file_stream; //File stream
 
-    //Экран
+    //Screen
     Gui* gui;
     ViewDispatcher* view_dispatcher;
     NotificationApp* notifications;
     Widget* widget;
     Popup* popup;
-    //Буффер для различного текста
+    //Buffer for various text
     char* buff;
 } Unitemp;
 
-/* Объявление прототипов функций */
+/* Declaring Function Prototypes */
 
 /**
- * @brief Перевод значения температуры датчика из Цельсия в Фаренгейты
+ * @brief Converting sensor temperature value from Celsius to Fahrenheit
  * 
- * @param sensor Указатель на датчик
+ * @param sensor Pointer to sensor
  */
 void unitemp_celsiusToFahrenheit(Sensor* sensor);
 
@@ -141,16 +141,16 @@ void unitemp_rhToDewpointC(Sensor* sensor);
 void unitemp_rhToDewpointF(Sensor* sensor);
 
 /**
- * @brief Конвертация давления из паскалей в мм рт.ст.
+ * @brief Converting pressure from pascals to mmHg.
  * 
- * @param sensor Указатель на датчик
+ * @param sensor Pointer to sensor
  */
 void unitemp_pascalToMmHg(Sensor* sensor);
 
 /**
- * @brief Конвертация давления из паскалей в килопаскали
+ * @brief Converting pressure from pascals to kilopascals
  * 
- * @param sensor Указатель на датчик
+ * @param sensor Pointer to sensor
  */
 void unitemp_pascalToKPa(Sensor* sensor);
 /**
@@ -160,22 +160,22 @@ void unitemp_pascalToKPa(Sensor* sensor);
  */
 void unitemp_pascalToHPa(Sensor* sensor);
 /**
- * @brief Конвертация давления из паскалей в дюйм рт.ст.
+ * @brief Converting pressure from pascals to inHg.
  * 
- * @param sensor Указатель на датчик
+ * @param sensor Pointer to sensor
  */
 void unitemp_pascalToInHg(Sensor* sensor);
 
 /**
- * @brief Сохранение настроек на SD-карту
+ * @brief Saving settings to SD card
  * 
- * @return Истина если сохранение успешное
+ * @return True if save is successful
  */
 bool unitemp_saveSettings(void);
 /**
- * @brief Загрузка настроек с SD-карты
+ * @brief Loading settings from SD card
  * 
- * @return Истина если загрузка успешная
+ * @return True if upload is successful
  */
 bool unitemp_loadSettings(void);
 
