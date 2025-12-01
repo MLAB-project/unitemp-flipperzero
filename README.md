@@ -2,9 +2,8 @@
 
 # Unitemp - Universal temperature sensor reader
 
-[![GitHub release](https://img.shields.io/github/release/quen0n/unitemp-flipperzero?include_prereleases=&sort=semver&color=blue)](https://github.com/quen0n/unitemp-flipperzero/releases/)
-[![GitHub](https://img.shields.io/github/license/quen0n/unitemp-flipperzero)](https://github.com/quen0n/unitemp-flipperzero/blob/dev/LICENSE.md)
 [![Build dev](https://github.com/MLAB-project/unitemp-flipperzero/actions/workflows/build_dev.yml/badge.svg)](https://github.com/MLAB-project/unitemp-flipperzero/actions/workflows/build_dev.yml) 
+[![GitHub release](https://img.shields.io/github/release/MLAB-project/unitemp-flipperzero?include_prereleases=&sort=semver&color=blue)](https://github.com/MLAB-project/unitemp-flipperzero/releases)
 
 [Flipper Zero](https://flipperzero.one/) application for reading temperature, humidity and pressure sensors like a DHT11/22, DS18B20, BMP280, HTU21, and more. 
 
@@ -19,7 +18,7 @@
 | DHT21/AM2301     |    | DHT      | -40...80 °C | ±1 °C    | 0.1 °C   | 0...100 %  | ±3 %    | 0.1 %   |                  |           |           |
 | DHT22/AM2302     |  | DHT      | -40...80 °C | ±0.5°C   | 0.1 °C   | 0...100 %  | ±2 %    | 0.1 %   |                  |           |           |
 | DHT20/AM2108     |  | I2C              | -40...80 °C | ±0.5 °C  | 0.1 °C   | 0...100 %  | ±3 %    | 0.1 %   |                  |           |           |
-| AM2320           |  | Single wire, I2C | -40...80 °C | ±0.5 °C  | 0.1 °C   | 0...100 %  | ±3 %    | 0.1 %   |                  |           |           |
+| AM2320           |  | I2C | -40...80 °C | ±0.5 °C  | 0.1 °C   | 0...100 %  | ±3 %    | 0.1 %   |                  |           |           |
 | AHT10            |    | I2C              | -40...85 °C | ±0.3 °C  | 0.01 °C  | 0...100 %  | ±2 %    | 0.024 % |                  |           |           |
 | AHT20            |      | I2C              | -40...85 °C | ±0.3 °C  | 0.01 °C  | 0...100 %  | ±2 %    | 0.024 % |                  |           |           |
 | SHT30/GXHT30     |  [TFHT01](https://docs.thunderfly.cz/avionics/TFHT01/)   | I2C              | -40…125 °C  | ±0.3 °C  | 0.06 °C  | 0...100 %  | ±2 %    | 0.01 %  |                  |           |           |
