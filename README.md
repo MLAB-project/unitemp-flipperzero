@@ -5,7 +5,7 @@
 [![Build dev](https://github.com/MLAB-project/unitemp-flipperzero/actions/workflows/build_dev.yml/badge.svg)](https://github.com/MLAB-project/unitemp-flipperzero/actions/workflows/build_dev.yml) 
 [![GitHub release](https://img.shields.io/github/release/MLAB-project/unitemp-flipperzero?include_prereleases=&sort=semver&color=blue)](https://github.com/MLAB-project/unitemp-flipperzero/releases)
 
-[Flipper Zero](https://flipperzero.one/) application for reading temperature, humidity and pressure sensors like a DHT11/22, DS18B20, BMP280, HTU21, and more. 
+[Flipper Zero](https://flipperzero.one/) application for reading temperature, humidity, CO2 and pressure sensors like a DHT11/22, DS18B20, BMP280, HTU21, and more. 
 
 ## List of supported sensors
 
@@ -64,4 +64,4 @@ Join the discussion, ask a question, or just send a photo of the flipper with se
 ## Acknowledgement
 
 Thanks to [@Svaarich](https://github.com/Svaarich) for the UI design and to the Unleashed firmware community for sensor testing and feedback.
-Thanks to Victor Nikitchuk (quen0n) for coding and maintenance of the initial version of the unitemp application. 
+Thanks to Victor Nikitchuk [@quen0n](https://github.com/quen0n) for coding and maintenance of the initial version of the unitemp application. 
