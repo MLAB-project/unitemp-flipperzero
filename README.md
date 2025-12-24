@@ -50,6 +50,13 @@ Download and install from the application catalog https://lab.flipper.net/apps/u
 3) Open the application on your Flipper: `Applications->GPIO->Temp sensors reader`  
 Note: If you get the message "API version mismatch" after updating the firmware, download and install Unitemp again
 
+### Compilation 
+
+Use the [ufbt](https://github.com/flipperdevices/flipperzero-ufbt) to compile and install the development version directly to flipper. 
+
+    ufbt update
+    ufbt && ufbt launch 
+
 ## Need help? Discussions?
 
 Join the discussion, ask a question, or just send a photo of the flipper with sensors to [Discord](https://discord.com/channels/740930220399525928/1056727938747351060). [Invite link](https://discord.com/invite/flipper)
