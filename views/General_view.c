@@ -17,6 +17,7 @@
 */
 #include "UnitempViews.h"
 #include "unitemp_icons.h"
+#include <inttypes.h>
 
 extern const Icon I_ButtonRight_4x7;
 extern const Icon I_ButtonLeft_4x7;
@@ -177,18 +178,18 @@ static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
     //Drawing icon
     canvas_draw_icon(canvas, x + 3, y + 3, &I_co2_11x14);
 
-    uint16_t concentration_int = (uint16_t)sensor->co2;
+    uint32_t concentration_int = (uint32_t)sensor->co2;
 //    int8_t concentration_dec = (int16_t)(sensor->co2 * 10) % 10;
 
     //Whole part
-    if(concentration_int > 40000) {
+    if(concentration_int > 40000u) {
         snprintf(app->buff, BUFF_SIZE, "MAX  ");
         canvas_set_font(canvas, FontPrimary);
-    } else if(concentration_int > 9999) {
-        snprintf(app->buff, BUFF_SIZE, "%u", concentration_int);
+    } else if(concentration_int > 9999u) {
+        snprintf(app->buff, BUFF_SIZE, "%" PRIu32, concentration_int);
         canvas_set_font(canvas, FontPrimary);
     } else {
-        snprintf(app->buff, BUFF_SIZE, "%u", concentration_int);
+        snprintf(app->buff, BUFF_SIZE, "%" PRIu32, concentration_int);
         canvas_set_font(canvas, FontBigNumbers);
     }
 
