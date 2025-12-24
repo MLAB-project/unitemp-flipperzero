@@ -177,7 +177,7 @@ static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
     //Drawing icon
     canvas_draw_icon(canvas, x + 3, y + 3, &I_co2_11x14);
 
-    int32_t concentration_int = (int32_t)sensor->co2;
+    uint16_t concentration_int = sensor->co2 < 0 ? 0 : (uint16_t)sensor->co2;
 //    int8_t concentration_dec = (int16_t)(sensor->co2 * 10) % 10;
 
     //Whole part
@@ -185,10 +185,10 @@ static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
         snprintf(app->buff, BUFF_SIZE, "MAX  ");
         canvas_set_font(canvas, FontPrimary);
     } else if(concentration_int > 9999) {
-        snprintf(app->buff, BUFF_SIZE, "%d", concentration_int);
+        snprintf(app->buff, BUFF_SIZE, "%u", concentration_int);
         canvas_set_font(canvas, FontPrimary);
     } else {
-        snprintf(app->buff, BUFF_SIZE, "%d", concentration_int);
+        snprintf(app->buff, BUFF_SIZE, "%u", concentration_int);
         canvas_set_font(canvas, FontBigNumbers);
     }
 
