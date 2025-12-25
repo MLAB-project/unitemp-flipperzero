@@ -165,8 +165,8 @@ static void _draw_pressure(Canvas* canvas, Sensor* sensor) {
 }
 
 static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
-    const uint8_t x = 29, y = 39;
     const uint8_t frame_w = 83;
+    const uint8_t x = (128 - frame_w) / 2, y = 39;
     //Drawing a frame
     canvas_draw_rframe(canvas, x, y, frame_w, 20, 3);
     if(color == ColorBlack) {
