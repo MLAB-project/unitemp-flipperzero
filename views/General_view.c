@@ -17,6 +17,7 @@
 */
 #include "UnitempViews.h"
 #include "unitemp_icons.h"
+#include <inttypes.h>
 
 extern const Icon I_ButtonRight_4x7;
 extern const Icon I_ButtonLeft_4x7;
@@ -164,34 +165,34 @@ static void _draw_pressure(Canvas* canvas, Sensor* sensor) {
 }
 
 static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
-    const uint8_t x = 29, y = 39;
+    const uint8_t frame_w = 83;
+    const uint8_t x = (128 - frame_w) / 2, y = 39;
     //Drawing a frame
-    canvas_draw_rframe(canvas, x, y, 75, 20, 3);
+    canvas_draw_rframe(canvas, x, y, frame_w, 20, 3);
     if(color == ColorBlack) {
-        canvas_draw_rbox(canvas, x, y, 75, 19, 3);
+        canvas_draw_rbox(canvas, x, y, frame_w, 19, 3);
         canvas_invert_color(canvas);
     } else {
-        canvas_draw_rframe(canvas, x, y, 75, 19, 3);
+        canvas_draw_rframe(canvas, x, y, frame_w, 19, 3);
     }
 
     //Drawing icon
     canvas_draw_icon(canvas, x + 3, y + 3, &I_co2_11x14);
 
-    int16_t concentration_int = sensor->co2;
+    uint32_t concentration_int = (uint32_t)sensor->co2;
 //    int8_t concentration_dec = (int16_t)(sensor->co2 * 10) % 10;
 
     //Whole part
-    if(concentration_int > 9999) {
+    if(concentration_int > 40000u) {
         snprintf(app->buff, BUFF_SIZE, "MAX  ");
-        canvas_set_font(canvas, FontPrimary);
-    }
-    else {
-        snprintf(app->buff, BUFF_SIZE, "%d", concentration_int);
+        canvas_set_font(canvas, FontBigNumbers);
+    } else {
+        snprintf(app->buff, BUFF_SIZE, "%" PRIu32, concentration_int);
         canvas_set_font(canvas, FontBigNumbers);
     }
 
     canvas_draw_str_aligned(
-        canvas, x + 70, y + 10, AlignRight, AlignCenter, app->buff);
+        canvas, x + frame_w - 5, y + 10, AlignRight, AlignCenter, app->buff);
 }
 
 static void _draw_singleSensor(Canvas* canvas, Sensor* sensor, const uint8_t pos[2], Color color) {
