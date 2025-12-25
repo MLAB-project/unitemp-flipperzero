@@ -166,13 +166,14 @@ static void _draw_pressure(Canvas* canvas, Sensor* sensor) {
 
 static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
     const uint8_t x = 29, y = 39;
+    const uint8_t frame_w = 83;
     //Drawing a frame
-    canvas_draw_rframe(canvas, x, y, 75, 20, 3);
+    canvas_draw_rframe(canvas, x, y, frame_w, 20, 3);
     if(color == ColorBlack) {
-        canvas_draw_rbox(canvas, x, y, 75, 19, 3);
+        canvas_draw_rbox(canvas, x, y, frame_w, 19, 3);
         canvas_invert_color(canvas);
     } else {
-        canvas_draw_rframe(canvas, x, y, 75, 19, 3);
+        canvas_draw_rframe(canvas, x, y, frame_w, 19, 3);
     }
 
     //Drawing icon
@@ -191,7 +192,7 @@ static void _draw_co2(Canvas* canvas, Sensor* sensor, Color color) {
     }
 
     canvas_draw_str_aligned(
-        canvas, x + 70, y + 10, AlignRight, AlignCenter, app->buff);
+        canvas, x + frame_w - 5, y + 10, AlignRight, AlignCenter, app->buff);
 }
 
 static void _draw_singleSensor(Canvas* canvas, Sensor* sensor, const uint8_t pos[2], Color color) {
